@@ -11,7 +11,7 @@ nav > h1 {
 }
 
 nav {
-    background-color: lightseagreen;
+    background-color: #20b2aa;
     height: 100px;
     display: flex;
     align-items: center;
@@ -26,3 +26,27 @@ nav > ul {
     width: 25vw;
 }
 
+button.log-in-with-google {
+    padding: 30px;
+    font-size: 1.3rem;
+    border-radius: 12px;
+    border: 0;
+    background-color: #116966;
+    color: white;
+    font-weight: 800;
+    box-shadow: 1px 3px 15px rgb(0 0 0 / 0.5);
+}
+
+button.log-in-with-google:hover {
+    position: relative;
+    bottom: 2px;
+    cursor: pointer;
+}
+
+.log-in-container {
+    height: calc(100vh - 100px);
+    background-color: #f1ffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

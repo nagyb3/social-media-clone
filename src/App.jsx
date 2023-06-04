@@ -36,7 +36,7 @@ function App() {
 
     return (
         <div>
-            <Navbar />
+            <Navbar isLoggedIn={isLoggedIn}/>
             {isLoggedIn ? <MainMenu /> : <LogIn setIsLoggedIn={setIsLoggedIn} />}
         </div>
     );

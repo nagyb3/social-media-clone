@@ -16,8 +16,8 @@ export default function LogIn(props) {
     }
 
     return (
-        <div>
-            <button onClick={logInWithGoogle}>LOGIN WITH GOOGLE</button>
+        <div className='log-in-container'>
+            <button className="log-in-with-google" onClick={logInWithGoogle}>LOGIN WITH GOOGLE</button>
         </div>
     )
 }
