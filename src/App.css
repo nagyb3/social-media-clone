@@ -50,3 +50,7 @@ button.log-in-with-google:hover {
     justify-content: center;
     align-items: center;
 }
+
+.log-out-button {
+    cursor: pointer;
+}

@@ -8,7 +8,7 @@ import MainMenu from './components/MainMenu';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider } from "firebase/auth"
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite'
+import { getFirestore, collection, getDocs } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: "AIzaSyBt_EqN0Oq85nzt7zfmdXbOG6cye9xgNrA",
@@ -22,7 +22,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
+
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 
@@ -36,7 +36,7 @@ function App() {
 
     return (
         <div>
-            <Navbar isLoggedIn={isLoggedIn}/>
+            <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
             {isLoggedIn ? <MainMenu /> : <LogIn setIsLoggedIn={setIsLoggedIn} />}
         </div>
     );
