@@ -96,7 +96,7 @@ button.log-in-with-google:hover {
     
 }
 
-.new-post-form > button.post-button {
+.new-post-form > input[type="submit"] {
     flex: 1;
     border-radius: 8px;
     border: 0;

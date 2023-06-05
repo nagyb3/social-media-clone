@@ -9,20 +9,16 @@ export default function MainMenu() {
 
     const [messageList, setMessageList] = useState([]);
     const [newMessage, setNewMessage] = useState("")
-  
-    // console.log(db)
 
     const messagesCollectionRef = collection(db, "messages");
   
     const getMessageList = async () => {
       try {
         const data = await getDocs(messagesCollectionRef)
-        // console.log(data)
         const filteredData = data.docs.map((doc) => ({
           ...doc.data(), 
           id: doc.id
         }));
-        // console.log(filteredData)
         setMessageList(filteredData)
       } catch (err) {
         console.error(err)
@@ -33,21 +29,18 @@ export default function MainMenu() {
         getMessageList();
     }, [])
 
-    // console.log(auth)
-
-    // console.log("sent displayname:", auth.currentUser.displayName, "sent dispaly email:", auth.currentUser.email)
-
     const onSubmitMessage = async (e) => {
-      e.preventDefault()
+      e.preventDefault();
       try {
         await addDoc(messagesCollectionRef, {
           message: newMessage,
           createdAt: new Date(),
           authorDisplayName: auth.currentUser.displayName, 
-          authorEmail: auth.currentUser.email
+          authorEmail: auth.currentUser.email,
+          numberOfLikes: 0
         })
-        // await addDoc(messagesCollectionRef, {message: "hey"});
         getMessageList();
+        setNewMessage("");
         console.log('1')
       } catch (err) {
         console.error(err)
@@ -58,7 +51,7 @@ export default function MainMenu() {
         <div className="main-menu-container">
             <h1>hey you are logged in!</h1>
             <form onSubmit={onSubmitMessage} className="new-post-form">
-              <input onChange={e => setNewMessage(e.target.value)} className="text-input" type="text" placeholder="whats on your mind?"/>
+              <input value={newMessage} onChange={e => setNewMessage(e.target.value)} className="text-input" type="text" placeholder="whats on your mind?"/>
               <input type="submit" className="post-button"></input>
             </form>
             <div className="all-message-container">

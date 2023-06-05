@@ -20,7 +20,8 @@ export default function MessageCard(props) {
         <div className="message-card-container">
             <p>{props.m.message}</p>
             <p>Date: {dateFormat(props.m.createdAt.toDate(), "yyyy mmmm dS, HH:MM:ss")}</p>
-            {/* <button onClick={() => deleteDocument(m.id)}>delete this</button> */}
+            <p>Author: {props.m.authorDisplayName}</p>
+            <p>Likes: {props.m.numberOfLikes}</p>
         </div>
     )
 }
