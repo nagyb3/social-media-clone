@@ -7,18 +7,19 @@ import MainMenu from './components/MainMenu';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, GoogleAuthProvider } from "firebase/auth"
+import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth"
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBt_EqN0Oq85nzt7zfmdXbOG6cye9xgNrA",
-  authDomain: "social-media-clone-de887.firebaseapp.com",
-  projectId: "social-media-clone-de887",
-  storageBucket: "social-media-clone-de887.appspot.com",
-  messagingSenderId: "338715349602",
-  appId: "1:338715349602:web:97fca966273665b211373b",
-  measurementId: "G-RZ12LZWF93"
-};
+    apiKey: "AIzaSyBt_EqN0Oq85nzt7zfmdXbOG6cye9xgNrA",
+    authDomain: "social-media-clone-de887.firebaseapp.com",
+    databaseURL: "https://social-media-clone-de887-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "social-media-clone-de887",
+    storageBucket: "social-media-clone-de887.appspot.com",
+    messagingSenderId: "338715349602",
+    appId: "1:338715349602:web:97fca966273665b211373b",
+    measurementId: "G-RZ12LZWF93"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -33,6 +34,7 @@ function App() {
 
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
+    auth.onAuthStateChanged(user => user ? setIsLoggedIn(true) : setIsLoggedIn(false))
 
     return (
         <div>

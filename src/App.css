@@ -54,3 +54,55 @@ button.log-in-with-google:hover {
 .log-out-button {
     cursor: pointer;
 }
+
+.message-card-container {
+    width: fit-content;
+    background-color: #bef7f5;
+    padding: 30px;
+    border: 2px solid rgb(187, 187, 187);
+    border-radius: 10px;
+    width: 600px;
+}
+
+.all-message-container {
+    /* background-color: red; */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.new-post-form {
+    width: 650px;
+    display: flex;
+    gap: 10px;
+}
+
+.main-menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-post-form > input.text-input {
+    width: 500px;
+    line-height: 2.2rem;
+    padding: 6px;
+    padding-left: 2ch;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: 1px solid lightslategray;
+    
+}
+
+.new-post-form > button.post-button {
+    flex: 1;
+    border-radius: 8px;
+    border: 0;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    color: white;
+    background-color: #085857
+}

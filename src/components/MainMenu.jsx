@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 import { db } from "../App.jsx"
-import {docs, collection, getDocs} from "firebase/firestore"
-import dateFormat, { masks } from "dateformat";
+import { docs, collection, getDocs, addDoc } from "firebase/firestore"
+import MessageCard from "./MessageCard.jsx";
+import { auth, messagesCollectionRef } from "../App.jsx"
 
 export default function MainMenu() {
 
     const [messageList, setMessageList] = useState([]);
     const [newMessage, setNewMessage] = useState("")
   
-    console.log(db)
+    // console.log(db)
 
     const messagesCollectionRef = collection(db, "messages");
   
@@ -21,7 +22,7 @@ export default function MainMenu() {
           ...doc.data(), 
           id: doc.id
         }));
-        console.log(filteredData)
+        // console.log(filteredData)
         setMessageList(filteredData)
       } catch (err) {
         console.error(err)
@@ -32,17 +33,39 @@ export default function MainMenu() {
         getMessageList();
     }, [])
 
+    // console.log(auth)
+
+    // console.log("sent displayname:", auth.currentUser.displayName, "sent dispaly email:", auth.currentUser.email)
+
+    const onSubmitMessage = async (e) => {
+      e.preventDefault()
+      try {
+        await addDoc(messagesCollectionRef, {
+          message: newMessage,
+          createdAt: new Date(),
+          authorDisplayName: auth.currentUser.displayName, 
+          authorEmail: auth.currentUser.email
+        })
+        // await addDoc(messagesCollectionRef, {message: "hey"});
+        getMessageList();
+        console.log('1')
+      } catch (err) {
+        console.error(err)
+      }
+    }
 
     return (
-        <div>
+        <div className="main-menu-container">
             <h1>hey you are logged in!</h1>
-            {messageList.map((m) => (
-                <div>
-                    <p>{m.message}</p>
-                    <p>Date: {dateFormat(m.createdAt.toDate(), "yyyy mmmm dS, HH:MM:ss")}</p>
-                    {/* <button onClick={() => deleteDocument(m.id)}>delete this</button> */}
-                </div>
-            ))}
+            <form onSubmit={onSubmitMessage} className="new-post-form">
+              <input onChange={e => setNewMessage(e.target.value)} className="text-input" type="text" placeholder="whats on your mind?"/>
+              <input type="submit" className="post-button"></input>
+            </form>
+            <div className="all-message-container">
+                {messageList.map((m) => (
+                    <MessageCard key={m.id} m={m}/>
+                ))}
+            </div>
         </div>
     )
 }
