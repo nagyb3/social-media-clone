@@ -58,10 +58,13 @@ button.log-in-with-google:hover {
 .message-card-container {
     width: fit-content;
     background-color: #bef7f5;
-    padding: 30px;
+    padding: 25px;
     border: 2px solid rgb(187, 187, 187);
     border-radius: 10px;
     width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
 }
 
 .all-message-container {
@@ -105,4 +108,31 @@ button.log-in-with-google:hover {
     font-size: 0.9rem;
     color: white;
     background-color: #085857
+}
+
+p.display-name {
+    font-weight: 600;
+}
+
+.top-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-row > p {
+    margin: 0;
+}
+
+.message-card-container p {
+    margin: 0;
+}
+
+p.message {
+    line-height: 1.3rem;
+}
+
+.bottom-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }

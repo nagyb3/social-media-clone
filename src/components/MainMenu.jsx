@@ -31,19 +31,21 @@ export default function MainMenu() {
 
     const onSubmitMessage = async (e) => {
       e.preventDefault();
-      try {
-        await addDoc(messagesCollectionRef, {
-          message: newMessage,
-          createdAt: new Date(),
-          authorDisplayName: auth.currentUser.displayName, 
-          authorEmail: auth.currentUser.email,
-          numberOfLikes: 0
-        })
-        getMessageList();
-        setNewMessage("");
-        console.log('1')
-      } catch (err) {
-        console.error(err)
+      if (newMessage !== "") {
+        try {
+          await addDoc(messagesCollectionRef, {
+            message: newMessage,
+            createdAt: new Date(),
+            authorDisplayName: auth.currentUser.displayName, 
+            authorEmail: auth.currentUser.email,
+            numberOfLikes: 0
+          })
+          getMessageList();
+          setNewMessage("");
+          console.log('1')
+        } catch (err) {
+          console.error(err)
+        }
       }
     }
 

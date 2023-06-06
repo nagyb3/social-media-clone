@@ -1,27 +1,42 @@
 import React from "react";
 import dateFormat, { masks } from "dateformat";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { doc } from "firebase/auth"
 
 export default function MessageCard(props) {
     
-    /*info needed inside db for each message document:
-    -   message 
-    -   createdAt
-    -   number of likes
-    -   author (authorDisplayName, authorEmail)
-    -   
+    const [currentUserLikedThisMessage, setCurrentUserLikedThisMessage] = React.useState(false)
 
+    /*
     others on card:
     -   like button
     -   write comment textarea + post button
     -   show last comments
     */
 
+    // const clickLikeButton = async () => {
+    //     setCurrentUserLikedThisMessage(!currentUserLikedThisMessage);
+    //     const docRef = 
+    // }
+
     return (
         <div className="message-card-container">
-            <p>{props.m.message}</p>
-            <p>Date: {dateFormat(props.m.createdAt.toDate(), "yyyy mmmm dS, HH:MM:ss")}</p>
-            <p>Author: {props.m.authorDisplayName}</p>
-            <p>Likes: {props.m.numberOfLikes}</p>
+            <div className="top-row">
+                <p className="display-name">@{props.m.authorDisplayName}</p>
+                <p>{dateFormat(props.m.createdAt.toDate(), "yyyy mmmm dS, HH:MM:ss")}</p>
+            </div>
+            <p className="message">{props.m.message}</p>
+            
+            <div className="bottom-row">
+                <div onClick={clickLikeButton}>
+                    {currentUserLikedThisMessage ? 
+                    <FavoriteIcon />:
+                    <FavoriteBorderIcon/>}
+                </div>
+                <p className="number-of-likes">{props.m.numberOfLikes}</p>
+            </div>
+            
         </div>
     )
 }
