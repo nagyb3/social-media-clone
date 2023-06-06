@@ -26,7 +26,7 @@ export default function MainMenu() {
     }  
 
     useEffect(() => {
-        getMessageList();
+      getMessageList();
     }, [])
 
     const onSubmitMessage = async (e) => {
@@ -38,7 +38,8 @@ export default function MainMenu() {
             createdAt: new Date(),
             authorDisplayName: auth.currentUser.displayName, 
             authorEmail: auth.currentUser.email,
-            numberOfLikes: 0
+            numberOfLikes: 0,
+            usersWhoLikedThis: []
           })
           getMessageList();
           setNewMessage("");
@@ -58,7 +59,7 @@ export default function MainMenu() {
             </form>
             <div className="all-message-container">
                 {messageList.map((m) => (
-                    <MessageCard key={m.id} m={m}/>
+                    <MessageCard getMessageList={getMessageList} key={m.id} m={m}/>
                 ))}
             </div>
         </div>

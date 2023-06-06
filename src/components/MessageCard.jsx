@@ -2,23 +2,36 @@ import React from "react";
 import dateFormat, { masks } from "dateformat";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { doc } from "firebase/auth"
+import { doc, updateDoc } from "firebase/firestore"
+import { db, auth } from "../App"
 
 export default function MessageCard(props) {
     
-    const [currentUserLikedThisMessage, setCurrentUserLikedThisMessage] = React.useState(false)
+    const [currentUserLikedThisMessage, setCurrentUserLikedThisMessage] = React.useState(
+        props.m.usersWhoLikedThis.includes(auth.currentUser.email)
+    )
 
-    /*
-    others on card:
-    -   like button
-    -   write comment textarea + post button
-    -   show last comments
-    */
-
-    // const clickLikeButton = async () => {
-    //     setCurrentUserLikedThisMessage(!currentUserLikedThisMessage);
-    //     const docRef = 
-    // }
+    const clickLikeButton = async () => {
+        if (!currentUserLikedThisMessage) {  // most likeolta be
+            let newUsersWhoLikedThis = [...props.m.usersWhoLikedThis];
+            newUsersWhoLikedThis.push(auth.currentUser.email)
+            
+            await updateDoc(doc(db, "messages", props.m.id), {
+                numberOfLikes: props.m.numberOfLikes + 1, 
+                usersWhoLikedThis: newUsersWhoLikedThis
+            })
+        } else {
+            let newUsersWhoLikedThis = props.m.usersWhoLikedThis;
+            newUsersWhoLikedThis = newUsersWhoLikedThis.filter(function(e) { return e !== auth.currentUser.email})
+            
+            await updateDoc(doc(db, "messages", props.m.id), {
+                numberOfLikes: props.m.numberOfLikes - 1,
+                usersWhoLikedThis: newUsersWhoLikedThis
+            })
+        }
+        setCurrentUserLikedThisMessage(!currentUserLikedThisMessage);
+        props.getMessageList();
+    }
 
     return (
         <div className="message-card-container">
@@ -28,15 +41,14 @@ export default function MessageCard(props) {
             </div>
             <p className="message">{props.m.message}</p>
             
-            <div className="bottom-row">
-                <div onClick={clickLikeButton}>
+            <div className="bottom-row" onClick={clickLikeButton}>
+                <div>
                     {currentUserLikedThisMessage ? 
                     <FavoriteIcon />:
                     <FavoriteBorderIcon/>}
                 </div>
                 <p className="number-of-likes">{props.m.numberOfLikes}</p>
             </div>
-            
         </div>
     )
 }
