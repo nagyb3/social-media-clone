@@ -14,16 +14,16 @@ export default function MainMenu() {
   
     const getMessageList = async () => {
       try {
-        const data = await getDocs(messagesCollectionRef)
+        const data = await getDocs(messagesCollectionRef);
         const filteredData = data.docs.map((doc) => ({
           ...doc.data(), 
           id: doc.id
         }));
-        setMessageList(filteredData)
+        setMessageList(filteredData);
       } catch (err) {
-        console.error(err)
+        console.error(err);
       }
-    }  
+    };
 
     useEffect(() => {
       getMessageList();
@@ -40,12 +40,11 @@ export default function MainMenu() {
             authorEmail: auth.currentUser.email,
             numberOfLikes: 0,
             usersWhoLikedThis: []
-          })
+          });
           getMessageList();
           setNewMessage("");
-          console.log('1')
         } catch (err) {
-          console.error(err)
+          console.error(err);
         }
       }
     }
