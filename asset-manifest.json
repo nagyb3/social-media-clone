@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/social-media-clone/static/css/main.25b037df.css",
+    "main.js": "/social-media-clone/static/js/main.211dc6a4.js",
+    "index.html": "/social-media-clone/index.html",
+    "main.25b037df.css.map": "/social-media-clone/static/css/main.25b037df.css.map",
+    "main.211dc6a4.js.map": "/social-media-clone/static/js/main.211dc6a4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.25b037df.css",
+    "static/js/main.211dc6a4.js"
+  ]
+}
