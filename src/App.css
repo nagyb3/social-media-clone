@@ -136,3 +136,25 @@ p.message {
     align-items: center;
     gap: 5px;
 }
+
+.comments-container {
+    /* border: 1px solid red; */
+    background-color: #d6d6d6;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    /* height: 0; */
+}
+
+button.hide-show {
+    width: fit-content;
+    border: 0;
+    background: #007775;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 8px;
+    margin-left: auto;
+}

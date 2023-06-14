@@ -13,13 +13,10 @@ export default function MessageCard(props) {
     - commentText
     - createdAt
     
-    - have a button on card -> shows comment input field -> hides it if pressed again
-    
     - show maximum of 3 comments under posts
     
     */
-   // TODO: useEffect for getCommentsList
-   // map over CommentsList and return last 3 comment element (~not a component) 
+    // map over CommentsList and return last 3 comment element (~not a component) 
 
     const [currentUserLikedThisMessage, setCurrentUserLikedThisMessage] = React.useState(
         props.m.usersWhoLikedThis.includes(auth.currentUser.email)
@@ -96,34 +93,62 @@ export default function MessageCard(props) {
         }
     }
 
-    return (
-        <div className="message-card-container">
-            <div className="top-row">
-                <p className="display-name">@{props.m.authorDisplayName}</p>
-                <p>{dateFormat(props.m.createdAt.toDate(), "yyyy mmmm dS, HH:MM:ss")}</p>
-            </div>
-            <p className="message">{props.m.message}</p>
-            
-            <div className="bottom-row" onClick={clickLikeButton}>
-                <div>
-                    {currentUserLikedThisMessage ? 
-                    <FavoriteIcon />:
-                    <FavoriteBorderIcon/>}
-                </div>
-                <p className="number-of-likes">{props.m.numberOfLikes}</p>
-            </div>
-            
-            <button onClick={onToggleCommentForm}>toggle comment field</button>
+    // console.log("commentsList:!", commentsList)
 
-            { showCommentForm &&
-                <form onSubmit={onSubmitNewComment} className="comment">
-                    <input onChange={e => setNewComment(e.target.value)} type="text" name="comment" id="comment" placeholder="send a comment" />
-                    <input type="submit" className="send-comment" />
-                </form>
+    function thisPostHasComment() {
+        for (let i = 0; i < commentsList.length; i++) {
+            if (commentsList[i].postId === props.m.id) {
+                return true;
             }
-            {/* { commentsList.map((comment) => (
-                <div key={comment.id}>{comment.text}</div>
-            ))} */}
+        }
+        return false;
+    };
+
+    return (
+        <div className="message-and-comment-container">
+            <div className="message-card-container">
+                <div className="top-row">
+                    <p className="display-name">@{props.m.authorDisplayName}</p>
+                    <p>{dateFormat(props.m.createdAt.toDate(), "yyyy mmmm dS, HH:MM:ss")}</p>
+                </div>
+                <p className="message">{props.m.message}</p>
+                
+                <div className="bottom-row">
+                    <div onClick={clickLikeButton}>
+                        {currentUserLikedThisMessage ? 
+                        <FavoriteIcon />:
+                        <FavoriteBorderIcon/>}
+                    </div>
+                    <p className="number-of-likes" onClick={clickLikeButton}>{props.m.numberOfLikes}</p>
+                    <button className="hide-show" onClick={onToggleCommentForm}> { 
+                    showCommentForm ? "HIDE" : "SEND COMMENT"
+                    }
+                </button>
+                </div>
+                
+                
+
+                { showCommentForm &&
+                    <form onSubmit={onSubmitNewComment} className="comment">
+                        <input value={newComment} onChange={e => setNewComment(e.target.value)} type="text" name="comment" id="comment" placeholder="send a comment" />
+                        <input type="submit" className="send-comment" />
+                    </form>
+                }
+                
+            </div>
+            {
+                thisPostHasComment() &&
+                    <div className="comments-container">
+                        <ul>
+                            { commentsList.map((comment) => {
+                                if (comment.postId === props.m.id) {
+                                    return <li key={comment.id}>{comment.text}</li>
+                                }
+                            })}
+                        </ul>
+                    </div>
+            }
         </div>
+        
     )
 }
