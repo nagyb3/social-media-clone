@@ -64,7 +64,7 @@ button.log-in-with-google:hover {
     width: 600px;
     display: flex;
     flex-direction: column;
-    gap: 13px;
+    gap: 18px;
 }
 
 .all-message-container {
@@ -128,7 +128,8 @@ p.display-name {
 }
 
 p.message {
-    line-height: 1.3rem;
+    line-height: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .bottom-row {
@@ -148,6 +149,11 @@ p.message {
     /* height: 0; */
 }
 
+.comments-container > ul {
+    line-height: 1.4rem;
+    list-style-type: "→";
+}
+
 button.hide-show {
     width: fit-content;
     border: 0;
@@ -157,4 +163,30 @@ button.hide-show {
     border-radius: 8px;
     padding: 8px;
     margin-left: auto;
+}
+
+span.comment-author {
+    font-weight: 600;
+}
+
+input.send-comment {
+    background-color: #085857;
+    color: white;
+    border-radius: 5px;
+    border: 0;
+    padding: 8px;
+    font-weight: 800;
+    font-size: 0.8rem;
+}
+
+form.comment {
+    display: flex;
+    gap: 30px
+}
+
+input#comment {
+    flex: 1;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 1.1rem;
 }

@@ -83,7 +83,8 @@ export default function MessageCard(props) {
                 createdAt: new Date(),
                 authorDisplayName: auth.currentUser.displayName, 
                 authorEmail: auth.currentUser.email,
-                postId: props.m.id
+                postId: props.m.id,
+                commentLikeCount: 0
               })
               getCommentsList();
               setNewComment("");
@@ -131,7 +132,7 @@ export default function MessageCard(props) {
                 { showCommentForm &&
                     <form onSubmit={onSubmitNewComment} className="comment">
                         <input value={newComment} onChange={e => setNewComment(e.target.value)} type="text" name="comment" id="comment" placeholder="send a comment" />
-                        <input type="submit" className="send-comment" />
+                        <input type="submit" value="Send Comment" className="send-comment" />
                     </form>
                 }
                 
@@ -142,7 +143,7 @@ export default function MessageCard(props) {
                         <ul>
                             { commentsList.map((comment) => {
                                 if (comment.postId === props.m.id) {
-                                    return <li key={comment.id}>{comment.text}</li>
+                                    return <li key={comment.id}><span className="comment-author">@{comment.authorDisplayName}:</span> {comment.text}</li>
                                 }
                             })}
                         </ul>
