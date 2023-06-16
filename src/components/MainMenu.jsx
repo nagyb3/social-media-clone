@@ -51,10 +51,10 @@ export default function MainMenu() {
 
     return (
         <div className="main-menu-container">
-            <h1>hey you are logged in!</h1>
+            {/* <h1>hey you are logged in!</h1> */}
             <form onSubmit={onSubmitMessage} className="new-post-form">
               <input value={newMessage} onChange={e => setNewMessage(e.target.value)} className="text-input" type="text" placeholder="whats on your mind?"/>
-              <input type="submit" className="post-button" />
+              <input type="submit" className="post-button" value="SEND"/>
             </form>
             <div className="all-message-container">
                 {messageList.map((m) => (
