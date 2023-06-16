@@ -3,12 +3,22 @@ import './App.css';
 import Navbar from './components/Navbar';
 import LogIn from './components/LogIn';
 import MainMenu from './components/MainMenu';
+// import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import "./components/MyProfile"
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    Navigate,
+  } from "react-router-dom";
+
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth"
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import MyProfile from './components/MyProfile';
 
 const firebaseConfig = {
     apiKey: "AIzaSyBt_EqN0Oq85nzt7zfmdXbOG6cye9xgNrA",
@@ -29,17 +39,31 @@ export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 
 
+
 function App() {
-
+    
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-
+    
     auth.onAuthStateChanged(user => user ? setIsLoggedIn(true) : setIsLoggedIn(false))
+    
+    // const router = createBrowserRouter([
+    //     {
+    //         path: "/",
+    //         element = {} <MainMenu />
+    //     },
+    // ]);
 
     return (
         <div>
             <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
-            {isLoggedIn ? <MainMenu /> : <LogIn setIsLoggedIn={setIsLoggedIn} />}
-        </div>
+            {/* <RouterProvider router={router} /> */}
+            <Router>
+                <Routes>
+                    <Route exact path="/" element={isLoggedIn ? <MainMenu /> : <LogIn />} />
+                    <Route exact path="/myprofile" element={<MyProfile />} />
+                </Routes>
+            </Router>
+        </div>    
     );
 }
 
