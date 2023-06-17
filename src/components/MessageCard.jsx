@@ -63,6 +63,7 @@ export default function MessageCard(props) {
             ...doc.data(), 
             id: doc.id
           }));
+          filteredData.sort(compare);
           setCommentsList(filteredData)
         } catch (err) {
           console.error(err);
@@ -72,6 +73,17 @@ export default function MessageCard(props) {
     React.useEffect(() => {
         getCommentsList();
     }, [])
+
+    //sort for OLDEST FIRST
+    function compare(a, b) {
+        if ( a.createdAt.seconds < b.createdAt.seconds){
+          return -1;
+        }
+        if ( a.createdAt.seconds > b.createdAt.seconds ){
+          return 1;
+        }
+        return 0;
+      }
 
     const onSubmitNewComment = async (e) => {
         e.preventDefault();

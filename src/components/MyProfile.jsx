@@ -17,11 +17,22 @@ export default function MyProfile() {
             ...doc.data(), 
             id: doc.id
           }));
+          filteredData.sort(compare);
           setMessageList(filteredData);
         } catch (err) {
           console.error(err);
         }
     };
+
+    function compare(a, b) {
+        if ( a.createdAt.seconds < b.createdAt.seconds){
+          return 1;
+        }
+        if ( a.createdAt.seconds > b.createdAt.seconds ){
+          return -1;
+        }
+        return 0;
+    }
   
     React.useEffect(() => {
         getMessageList();

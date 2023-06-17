@@ -19,11 +19,23 @@ export default function MainMenu() {
           ...doc.data(), 
           id: doc.id
         }));
+        filteredData.sort(compare);
         setMessageList(filteredData);
       } catch (err) {
         console.error(err);
       }
     };
+
+    //comparision used for sorting for newest
+    function compare(a, b) {
+      if ( a.createdAt.seconds < b.createdAt.seconds){
+        return 1;
+      }
+      if ( a.createdAt.seconds > b.createdAt.seconds ){
+        return -1;
+      }
+      return 0;
+    }
 
     useEffect(() => {
       getMessageList();
