@@ -196,3 +196,17 @@ input#comment {
     color: black;
     text-decoration: none;
 }
+
+.my-messages-container {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.my-profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

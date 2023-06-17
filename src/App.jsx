@@ -3,21 +3,16 @@ import './App.css';
 import Navbar from './components/Navbar';
 import LogIn from './components/LogIn';
 import MainMenu from './components/MainMenu';
-// import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import "./components/MyProfile"
 import {
     BrowserRouter as Router,
     Route,
     Routes,
-    Navigate,
     HashRouter,
-    Link,
   } from "react-router-dom";
-import { signOut } from "firebase/auth"
 
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth"
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
 import MyProfile from './components/MyProfile';
@@ -39,7 +34,6 @@ export const db = getFirestore(app);
 export const auth = getAuth(app);
 
 export const googleProvider = new GoogleAuthProvider();
-
 
 
 function App() {
