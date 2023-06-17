@@ -10,8 +10,10 @@ import {
     Route,
     Routes,
     Navigate,
+    HashRouter,
+    Link,
   } from "react-router-dom";
-
+import { signOut } from "firebase/auth"
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -46,21 +48,13 @@ function App() {
     
     auth.onAuthStateChanged(user => user ? setIsLoggedIn(true) : setIsLoggedIn(false))
     
-    // const router = createBrowserRouter([
-    //     {
-    //         path: "/",
-    //         element = {} <MainMenu />
-    //     },
-    // ]);
-
     return (
         <div>
-            <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
-            {/* <RouterProvider router={router} /> */}
-            <Router>
+            <Router basename='/social-media-clone'>
+                <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
                 <Routes>
-                    <Route exact path="/" element={isLoggedIn ? <MainMenu /> : <LogIn />} />
-                    <Route exact path="/myprofile" element={<MyProfile />} />
+                    <Route path="/" element={isLoggedIn ? <MainMenu /> : <LogIn />} />
+                    <Route path="myprofile" element={<MyProfile />} />
                 </Routes>
             </Router>
         </div>    

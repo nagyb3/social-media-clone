@@ -2,6 +2,7 @@
 import React from "react"
 import { signOut } from "firebase/auth"
 import { auth } from "../App"
+import { Link } from "react-router-dom"
 
 export default function Navbar(props) {
 
@@ -18,8 +19,14 @@ export default function Navbar(props) {
                     My social media site clone
                 </h1>
                 <ul>
-                    {props.isLoggedIn && <li>Home</li>}
-                    {props.isLoggedIn && <li>My Profile</li>}
+                    {props.isLoggedIn && 
+                        <li>
+                            <Link className="router-link" to="/">Home</Link>
+                        </li>}
+                    {props.isLoggedIn && 
+                        <li>
+                            <Link className="router-link" to="myprofile">My Profile</Link>
+                        </li>}
                     {props.isLoggedIn && <li className="log-out-button" onClick={logout}>Log Out</li>}
                 </ul>
             </nav>
