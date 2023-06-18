@@ -44,7 +44,7 @@ function App() {
     
     return (
         <div>
-            <Router basename='/social-media-clone'>
+            <Router>
                 <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
                 <Routes>
                     <Route path="/" element={isLoggedIn ? <MainMenu /> : <LogIn />} />
