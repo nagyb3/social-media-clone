@@ -100,6 +100,7 @@ export default function MessageCard(props) {
               })
               getCommentsList();
               setNewComment("");
+              setShowCommentForm(false);
             } catch (err) {
               console.error(err);
             }
