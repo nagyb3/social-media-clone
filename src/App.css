@@ -17,7 +17,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 100%;
+    width: 100vw;
 }
 
 nav > ul {
@@ -81,6 +81,18 @@ button.log-in-with-google:hover {
     gap: 18px;
 }
 
+@media only screen and (max-width: 600px) {
+    .message-card-container {
+        width: 400px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .message-card-container {
+        width: 80vw;
+    }
+}
+
 .all-message-container {
     /* background-color: red; */
     padding: 30px;
@@ -114,6 +126,18 @@ button.log-in-with-google:hover {
     
 }
 
+@media only screen and (max-width: 480px) {
+    .new-post-form {
+        width: 70vw;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .new-post-form {
+        width: 80vw;
+    }
+}
+
 .new-post-form > input[type="submit"] {
     flex: 1;
     border-radius: 8px;
@@ -123,6 +147,12 @@ button.log-in-with-google:hover {
     font-size: 1.1rem;
     color: white;
     background-color: #085857
+}
+
+@media only screen and (max-width: 768px) {
+    .new-post-form > input[type="submit"] {
+        font-size: 0.9rem;
+    }
 }
 
 p.display-name {
