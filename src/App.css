@@ -8,6 +8,7 @@ body {
 
 nav > h1 {
     margin: 0;
+    font-size: 1rem;
 }
 
 nav {
@@ -16,6 +17,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    width: 100%;
 }
 
 nav > ul {
@@ -25,6 +27,18 @@ nav > ul {
     padding: 0;
     width: 25vw;
 }
+
+@media only screen and (max-width: 480px) {
+    nav > ul {
+        width: 70vw;
+    }
+} 
+
+@media only screen and (max-width: 768px) {
+    nav > ul {
+        width: 50vw;
+    }
+} 
 
 button.log-in-with-google {
     padding: 30px;

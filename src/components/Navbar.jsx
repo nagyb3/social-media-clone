@@ -16,7 +16,7 @@ export default function Navbar(props) {
         <div className="nav-container">
             <nav>
                 <h1 className="nav-header">
-                    My social media site clone
+                    nagyb.xyz
                 </h1>
                 <ul>
                     {props.isLoggedIn && 
