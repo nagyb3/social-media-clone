@@ -42,6 +42,10 @@ function App() {
     
     auth.onAuthStateChanged(user => user ? setIsLoggedIn(true) : setIsLoggedIn(false))
     
+    React.useEffect(() => {
+        document.title = 'nagyb.xyz';
+    }, []);
+
     return (
         <div>
             <Router>
