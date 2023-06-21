@@ -10,6 +10,7 @@ import {
     Routes,
     HashRouter,
   } from "react-router-dom";
+import Display from "./components/Display"
 
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";

@@ -73,6 +73,7 @@ export default function MainMenu() {
                     <MessageCard showDeleteButton={false} getMessageList={getMessageList} key={m.id} m={m}/>
                 ))}
             </div>
+            
         </div>
     )
 }

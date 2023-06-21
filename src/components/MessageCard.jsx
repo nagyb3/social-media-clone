@@ -4,6 +4,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { doc, updateDoc, addDoc, collection, getDocs, deleteDoc } from "firebase/firestore"
 import { db, auth, messagesColectionRef } from "../App"
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 export default function MessageCard(props) {
     
@@ -105,9 +107,25 @@ export default function MessageCard(props) {
         return false;
     };
 
-    const onDeleteMessage = async () => {
-        await deleteDoc(doc(db, "messages", props.m.id));
-        props.getMessageList();
+    const onDeleteMessage = () => {
+        confirmAlert({
+            title: 'Confirm to delete',
+            message: 'Are you sure you want to delete this message?',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick: async () => {
+                    await deleteDoc(doc(db, "messages", props.m.id));
+                    props.getMessageList();
+                }
+              },
+              {
+                label: 'No',
+                onClick: () => console.log('delete aborted')
+              }
+            ]
+          });
+        
     }
 
     return (
