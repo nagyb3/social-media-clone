@@ -9,11 +9,9 @@ import {
     Route,
     Routes,
     HashRouter,
-  } from "react-router-dom";
-import Display from "./components/Display"
+} from "react-router-dom";
 
 import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth"
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
 import MyProfile from './components/MyProfile';
@@ -29,7 +27,7 @@ const firebaseConfig = {
     measurementId: "G-RZ12LZWF93"
   };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
 export const auth = getAuth(app);

@@ -1,10 +1,14 @@
 import React from "react"
 import { db } from "../App"
 import { collection, getDocs } from "firebase/firestore"
-import { auth } from "../App"
+// import { auth } from "../App"
 import MessageCard from "./MessageCard"
+import { getAuth } from "firebase/auth"
+import { app } from "../App"
+
 
 export default function MyProfile() {
+  const auth = getAuth(app);
 
     const [messageList, setMessageList] = React.useState([]);
 
@@ -38,7 +42,6 @@ export default function MyProfile() {
         getMessageList();
     }, [])
 
-    // console.log(messageList)
 
     return (
         <div className="my-profile-container">
