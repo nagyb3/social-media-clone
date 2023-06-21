@@ -2,31 +2,24 @@ import React from "react";
 import dateFormat, { masks } from "dateformat";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { doc, updateDoc, addDoc, collection, getDocs } from "firebase/firestore"
-import { db, auth } from "../App"
+import { doc, updateDoc, addDoc, collection, getDocs, deleteDoc } from "firebase/firestore"
+import { db, auth, messagesColectionRef } from "../App"
 
 export default function MessageCard(props) {
-    /*
-    - comments: 
-    - postId
-    - author (authorEmail and authorDisplayName)
-    - commentText
-    - createdAt
     
-    - show maximum of 3 comments under posts
-    
-    */
-    // map over CommentsList and return last 3 comment element (~not a component) 
-
     const [currentUserLikedThisMessage, setCurrentUserLikedThisMessage] = React.useState(
         props.m.usersWhoLikedThis.includes(auth.currentUser.email)
     );
     
+    const [showDeleteButton, setShowDeleteButton] = React.useState(true);
+
     const [showCommentForm, setShowCommentForm] = React.useState(false);
 
     const [newComment, setNewComment] = React.useState("");
 
     const [commentsList, setCommentsList] = React.useState([]);
+
+    const messagesCollectionRef = collection(db, "messages");
 
     const clickLikeButton = async () => {
         if (!currentUserLikedThisMessage) {  // most likeolta be
@@ -118,9 +111,19 @@ export default function MessageCard(props) {
         return false;
     };
 
+    const onDeleteMessage = async () => {
+        await deleteDoc(doc(db, "messages", props.m.id));
+        props.getMessageList();
+    }
+
     return (
         <div className="message-and-comment-container">
             <div className="message-card-container">
+                {showDeleteButton && 
+                    <div className="delete-post-container">
+                    <button onClick={onDeleteMessage} className="delete-post">X</button>
+                    </div>
+                }
                 <div className="top-row">
                     <p className="display-name">@{props.m.authorDisplayName}</p>
                     <p>{dateFormat(props.m.createdAt.toDate(), "yyyy mmmm dS, HH:MM:ss")}</p>

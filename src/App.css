@@ -268,3 +268,18 @@ input#comment {
     flex-direction: column;
     align-items: center;
 }
+
+.delete-post-container {
+    display: flex;
+    justify-content: end;
+}
+
+button.delete-post {
+    background-color: #085857;
+    color: white;
+    border: 0;
+    padding: 6px 8px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-weight: 800;
+}
