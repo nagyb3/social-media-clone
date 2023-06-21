@@ -38,7 +38,7 @@ export default function MyProfile() {
         getMessageList();
     }, [])
 
-    console.log(messageList)
+    // console.log(messageList)
 
     return (
         <div className="my-profile-container">

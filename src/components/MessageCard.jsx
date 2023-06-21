@@ -112,12 +112,12 @@ export default function MessageCard(props) {
 
     return (
         <div className="message-and-comment-container">
+            {props.showDeleteButton && 
+                <div className="delete-post-container">
+                    <button onClick={onDeleteMessage} className="delete-post">DELETE</button>
+                </div>
+            }
             <div className="message-card-container">
-                {props.showDeleteButton && 
-                    <div className="delete-post-container">
-                        <button onClick={onDeleteMessage} className="delete-post">X</button>
-                    </div>
-                }
                 <div className="top-row">
                     <p className="display-name">@{props.m.authorDisplayName}</p>
                     <p>{dateFormat(props.m.createdAt.toDate(), "yyyy mmmm dS, HH:MM:ss")}</p>
