@@ -10,16 +10,12 @@ export default function MessageCard(props) {
     const [currentUserLikedThisMessage, setCurrentUserLikedThisMessage] = React.useState(
         props.m.usersWhoLikedThis.includes(auth.currentUser.email)
     );
-    
-    const [showDeleteButton, setShowDeleteButton] = React.useState(true);
 
     const [showCommentForm, setShowCommentForm] = React.useState(false);
 
     const [newComment, setNewComment] = React.useState("");
 
     const [commentsList, setCommentsList] = React.useState([]);
-
-    const messagesCollectionRef = collection(db, "messages");
 
     const clickLikeButton = async () => {
         if (!currentUserLikedThisMessage) {  // most likeolta be
@@ -100,8 +96,6 @@ export default function MessageCard(props) {
         }
     }
 
-    // console.log("commentsList:!", commentsList)
-
     function thisPostHasComment() {
         for (let i = 0; i < commentsList.length; i++) {
             if (commentsList[i].postId === props.m.id) {
@@ -119,9 +113,9 @@ export default function MessageCard(props) {
     return (
         <div className="message-and-comment-container">
             <div className="message-card-container">
-                {showDeleteButton && 
+                {props.showDeleteButton && 
                     <div className="delete-post-container">
-                    <button onClick={onDeleteMessage} className="delete-post">X</button>
+                        <button onClick={onDeleteMessage} className="delete-post">X</button>
                     </div>
                 }
                 <div className="top-row">
@@ -166,6 +160,5 @@ export default function MessageCard(props) {
                     </div>
             }
         </div>
-        
     )
 }

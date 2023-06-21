@@ -70,7 +70,7 @@ export default function MainMenu() {
             </form>
             <div className="all-message-container">
                 {messageList.map((m) => (
-                    <MessageCard getMessageList={getMessageList} key={m.id} m={m}/>
+                    <MessageCard showDeleteButton={false} getMessageList={getMessageList} key={m.id} m={m}/>
                 ))}
             </div>
         </div>

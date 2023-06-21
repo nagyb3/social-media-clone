@@ -50,7 +50,7 @@ export default function MyProfile() {
                 {messageList.map(mes => {
                     if (mes.authorEmail === auth.currentUser.email) {
                         return (
-                            <MessageCard getMessageList={getMessageList} key={mes.id} m={mes}/>
+                            <MessageCard showDeleteButton={true} getMessageList={getMessageList} key={mes.id} m={mes}/>
                         )
                     }
                 })}
