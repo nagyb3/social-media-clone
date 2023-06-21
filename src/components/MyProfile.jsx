@@ -1,14 +1,13 @@
 import React from "react"
 import { db } from "../App"
 import { collection, getDocs } from "firebase/firestore"
-// import { auth } from "../App"
+import { auth } from "../App"
 import MessageCard from "./MessageCard"
-import { getAuth } from "firebase/auth"
-import { app } from "../App"
+import { getAuth, onAuthStateChanged } from "firebase/auth"
 
 
 export default function MyProfile() {
-  const auth = getAuth(app);
+  
 
     const [messageList, setMessageList] = React.useState([]);
 
@@ -37,18 +36,27 @@ export default function MyProfile() {
         }
         return 0;
     }
-  
+
     React.useEffect(() => {
-        getMessageList();
+      getMessageList();
     }, [])
 
+    const [ currentUserEmailState, setCurrentUserEmailState ] = React.useState("");
+    const [ currentUserDisplayName, setCurrentUserDisplayName ] = React.useState("");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUserDisplayName(auth.currentUser.displayName); 
+        setCurrentUserEmailState(auth.currentUser.email);
+      }
+    });
 
     return (
         <div className="my-profile-container">
             <h1>Your Messages</h1>
             <h2>Your are logged in as:</h2>
-            <p>{auth.currentUser.email}</p>
-            <p>{auth.currentUser.displayName}</p>
+            <p>{currentUserEmailState}</p>
+            <p>{currentUserDisplayName}</p>
             <div className="my-messages-container">
                 {messageList.map(mes => {
                     if (mes.authorEmail === auth.currentUser.email) {
