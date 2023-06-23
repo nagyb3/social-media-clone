@@ -32,7 +32,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    width: 100%;
+    height: 100%;
 }
 
 nav > h1 {
@@ -176,6 +176,11 @@ button.log-in-with-google:hover {
     font-size: 1.1rem;
     border-radius: 8px;
     border: 1px solid lightslategray;
+}
+
+#dark .new-post-form > input.text-input {
+    background-color: var(--dark-input);
+    color: white;
 }
 
 @media only screen and (max-width: 480px) {
@@ -342,4 +347,8 @@ button.delete-post {
     padding: 5px 8px;
     border-radius: 5px;
     font-weight: 800;
+}
+
+#dark {
+    min-height: 100vh;
 }
