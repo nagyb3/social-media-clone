@@ -8,6 +8,7 @@
     --dark-bg: #051b1b;
     --dark-nav: #215050;
     --dark-button: #0f4d4d;
+    --dark-input: #383d3d;
 }
 
 #dark {
@@ -136,7 +137,7 @@ button.log-in-with-google:hover {
     }
 }
 
-#dark .message-and-comment-container p {
+#dark .message-and-comment-container p, #dark .message-and-comment-container svg {
     color: white;
 }
 
@@ -246,6 +247,12 @@ p.message {
     /* height: 0; */
 }
 
+#dark .comments-container {
+    color: white;
+    background-color: var(--dark-bg);
+    border: 1px solid darkgrey;
+}
+
 .comments-container > ul {
     line-height: 1.4rem;
     list-style-type: "→";
@@ -261,6 +268,10 @@ button.hide-show {
     border-radius: 8px;
     padding: 8px;
     margin-left: auto;
+}
+
+#dark button.hide-show {
+    background-color: var(--dark-button);
 }
 
 span.comment-author {
@@ -289,6 +300,11 @@ input#comment {
     font-size: 1.1rem;
 }
 
+#dark input#comment {
+    background-color: var(--dark-input);
+    color: white;
+}
+
 .router-link {
     color: black;
     text-decoration: none;
@@ -306,6 +322,11 @@ input#comment {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100%;
+}
+
+#dark .my-profile-container {
+    color: white;
 }
 
 .delete-post-container {
