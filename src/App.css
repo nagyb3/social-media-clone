@@ -1,3 +1,16 @@
+:root {
+    --background-color: #ffffff;
+    --nav-background: #20b2aa;
+    --font-color: #000;
+    --button: #116966;
+    --submit: #085857;
+    --show-hide: #007775;
+}
+
+#dark {
+    background-color: black;
+}
+
 * {
     font-family: sans-serif;
 }
@@ -135,7 +148,6 @@ button.log-in-with-google:hover {
     font-size: 1.1rem;
     border-radius: 8px;
     border: 1px solid lightslategray;
-    
 }
 
 @media only screen and (max-width: 480px) {

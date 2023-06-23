@@ -10,6 +10,7 @@ import {
     Routes,
     HashRouter,
 } from "react-router-dom";
+import { createContext } from 'react';
 
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth"
@@ -34,6 +35,7 @@ export const auth = getAuth(app);
 
 export const googleProvider = new GoogleAuthProvider();
 
+export const ThemeContext = createContext(null);
 
 function App() {
     
@@ -44,17 +46,25 @@ function App() {
     React.useEffect(() => {
         document.title = 'nagyb.xyz';
     }, []);
+    
+    const [theme, setTheme] = React.useState('light');
+
+    function toggleTheme() {
+        setTheme(theme => (theme === 'light') ? 'dark' : 'light');
+    }
 
     return (
-        <div>
-            <Router>
-                <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-                <Routes>
-                    <Route path="/" element={isLoggedIn ? <MainMenu /> : <LogIn />} />
-                    <Route path="myprofile" element={<MyProfile />} />
-                </Routes>
-            </Router>
-        </div>    
+        <ThemeContext.Provider value={{theme, setTheme}}>
+            <div id={theme}>
+                <Router>
+                    <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+                    <Routes>
+                        <Route path="/" element={isLoggedIn ? <MainMenu /> : <LogIn />} />
+                        <Route path="myprofile" element={<MyProfile />} />
+                    </Routes>
+                </Router>
+            </div>    
+        </ThemeContext.Provider>
     );
 }
 
