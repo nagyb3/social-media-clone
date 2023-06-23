@@ -8,7 +8,7 @@ export default function Navbar(props) {
 
 
     const logout = async () => {
-        props.setIsLoggedIn(false);
+        // props.setIsLoggedIn(false);
         window.location = window.location.origin;
         await signOut(auth);
     }
