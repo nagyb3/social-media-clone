@@ -5,10 +5,23 @@
     --button: #116966;
     --submit: #085857;
     --show-hide: #007775;
+    --dark-bg: #051b1b;
+    --dark-nav: #215050;
+    --dark-button: #0f4d4d;
 }
 
 #dark {
-    background-color: black;
+    background-color: var(--dark-bg);
+}
+
+#dark nav {
+    background-color: var(--dark-nav);
+    color: white;
+    font-weight: 800;
+}
+
+#dark nav a {
+    color: white;
 }
 
 * {
@@ -63,6 +76,7 @@ button.log-in-with-google {
     background-color: #116966;
     color: white;
     font-weight: 800;
+    letter-spacing: 2px;
     box-shadow: 1px 3px 15px rgb(0 0 0 / 0.5);
 }
 
@@ -72,9 +86,13 @@ button.log-in-with-google:hover {
     cursor: pointer;
 }
 
+#dark button.log-in-with-google {
+    background-color: var(--dark-button);
+}
+
 .log-in-container {
     height: calc(100vh - 100px);
-    background-color: #f1ffff;
+    /* background-color: #f1ffff; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,6 +134,15 @@ button.log-in-with-google:hover {
     .message-and-comment-container {
         width: 90vw;
     }
+}
+
+#dark .message-and-comment-container p {
+    color: white;
+}
+
+#dark .message-card-container {
+    background-color: var(--dark-bg);
+    border: 1px solid rgb(97, 97, 97);
 }
 
 .all-message-container {

@@ -47,7 +47,7 @@ function App() {
         document.title = 'nagyb.xyz';
     }, []);
     
-    const [theme, setTheme] = React.useState('light');
+    const [theme, setTheme] = React.useState('dark');
 
     function toggleTheme() {
         setTheme(theme => (theme === 'light') ? 'dark' : 'light');
