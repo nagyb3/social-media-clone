@@ -9,6 +9,7 @@
     --dark-nav: #215050;
     --dark-button: #0f4d4d;
     --dark-input: #383d3d;
+    --white-for-darkmode: #EDEDED;
 }
 
 #dark {
@@ -17,12 +18,12 @@
 
 #dark nav {
     background-color: var(--dark-nav);
-    color: white;
+    color: var(--white-for-darkmode);
     font-weight: 800;
 }
 
 #dark nav a {
-    color: white;
+    color: var(--white-for-darkmode);
 }
 
 * {
@@ -75,7 +76,7 @@ button.log-in-with-google {
     border-radius: 12px;
     border: 0;
     background-color: #116966;
-    color: white;
+    color: var(--white-for-darkmode);
     font-weight: 800;
     letter-spacing: 2px;
     box-shadow: 1px 3px 15px rgb(0 0 0 / 0.5);
@@ -138,7 +139,7 @@ button.log-in-with-google:hover {
 }
 
 #dark .message-and-comment-container p, #dark .message-and-comment-container svg {
-    color: white;
+    color: var(--white-for-darkmode);
 }
 
 #dark .message-card-container {
@@ -180,7 +181,7 @@ button.log-in-with-google:hover {
 
 #dark .new-post-form > input.text-input {
     background-color: var(--dark-input);
-    color: white;
+    color: var(--white-for-darkmode);
 }
 
 @media only screen and (max-width: 480px) {
@@ -253,7 +254,7 @@ p.message {
 }
 
 #dark .comments-container {
-    color: white;
+    color: var(--white-for-darkmode);
     background-color: var(--dark-bg);
     border: 1px solid darkgrey;
 }
@@ -273,6 +274,7 @@ button.hide-show {
     border-radius: 8px;
     padding: 8px;
     margin-left: auto;
+    letter-spacing: 1px;
 }
 
 #dark button.hide-show {
@@ -285,11 +287,12 @@ span.comment-author {
 
 input.send-comment {
     background-color: #085857;
-    color: white;
+    color: var(--white-for-darkmode);
     border-radius: 5px;
     border: 0;
     padding: 8px;
-    font-weight: 800;
+    font-weight: 600;
+    letter-spacing: 1px;
     font-size: 0.8rem;
 }
 
@@ -307,7 +310,7 @@ input#comment {
 
 #dark input#comment {
     background-color: var(--dark-input);
-    color: white;
+    color: var(--white-for-darkmode);
 }
 
 .router-link {
@@ -331,7 +334,7 @@ input#comment {
 }
 
 #dark .my-profile-container {
-    color: white;
+    color: var(--white-for-darkmode);
 }
 
 .delete-post-container {
@@ -341,7 +344,7 @@ input#comment {
 
 button.delete-post {
     background-color: #085857;
-    color: white;
+    color: var(--white-for-darkmode);
     border: 0;
     padding: 6px 8px;
     padding: 5px 8px;
