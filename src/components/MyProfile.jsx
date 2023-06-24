@@ -4,7 +4,7 @@ import { collection, getDocs } from "firebase/firestore"
 import { auth } from "../App"
 import MessageCard from "./MessageCard"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
-import { PropaneSharp } from "@mui/icons-material"
+// import { PropaneSharp } from "@mui/icons-material"
 import ReactSwitch from "react-switch"
 import { ThemeContext } from "../App"
 
@@ -54,16 +54,14 @@ export default function MyProfile() {
 
     const {theme, toggleTheme, setTheme} = React.useContext(ThemeContext);
 
-    // console.log(auth);
-
     return (
         <div className="my-profile-container">
             <h1>Your Messages</h1>
             <h2>Your are logged in as:</h2>
             <p>{currentUserEmailState}</p>
             <p>{currentUserDisplayName}</p>
+            <button className="change-theme" onClick={toggleTheme}>SWITCH TO {theme === 'dark' ? 'LIGHT': 'DARK'} MODE</button>
             {/* <ReactSwitch onChange={toggleTheme} checked={theme === 'dark'} /> */}
-            <button onClick={toggleTheme}>TOGGLE</button>
             <div className="my-messages-container">
                 {messageList.map(mes => {
                     if (mes.authorEmail === auth.currentUser.email) {

@@ -8,10 +8,8 @@ import {
     BrowserRouter as Router,
     Route,
     Routes,
-    HashRouter,
 } from "react-router-dom";
 import { createContext } from 'react';
-import ReactSwitch from 'react-switch';
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth"
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
@@ -64,8 +62,6 @@ function App() {
 
     return (
         <div id={theme}>
-            {/* <ReactSwitch onChange={toggleTheme} checked={theme === "dark"} /> */}
-            {/* <button onClick={toggleTheme}>TOGGLE</button> */}
             <Router>
                 <ThemeContext.Provider value={{theme, toggleTheme, setTheme}}>
                     <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
