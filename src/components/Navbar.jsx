@@ -13,7 +13,7 @@ export default function Navbar(props) {
         await signOut(auth);
     }
 
-    console.log("auth:", auth.currentUser);
+    // console.log("auth:", auth.currentUser);
 
     return (
         <div className="nav-container">

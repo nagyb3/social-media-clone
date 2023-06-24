@@ -4,11 +4,13 @@ import { collection, getDocs } from "firebase/firestore"
 import { auth } from "../App"
 import MessageCard from "./MessageCard"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { PropaneSharp } from "@mui/icons-material"
+import ReactSwitch from "react-switch"
+import { ThemeContext } from "../App"
 
 
 export default function MyProfile() {
   
-
     const [messageList, setMessageList] = React.useState([]);
 
     const messagesCollectionRef = collection(db, "messages");
@@ -39,17 +41,20 @@ export default function MyProfile() {
 
     React.useEffect(() => {
       getMessageList();
-    }, [])
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setCurrentUserDisplayName(auth.currentUser.displayName); 
+          setCurrentUserEmailState(auth.currentUser.email);
+        }
+      });
+    }, [auth])
 
     const [ currentUserEmailState, setCurrentUserEmailState ] = React.useState("");
     const [ currentUserDisplayName, setCurrentUserDisplayName ] = React.useState("");
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setCurrentUserDisplayName(auth.currentUser.displayName); 
-        setCurrentUserEmailState(auth.currentUser.email);
-      }
-    });
+    const {theme, toggleTheme, setTheme} = React.useContext(ThemeContext);
+
+    // console.log(auth);
 
     return (
         <div className="my-profile-container">
@@ -57,6 +62,8 @@ export default function MyProfile() {
             <h2>Your are logged in as:</h2>
             <p>{currentUserEmailState}</p>
             <p>{currentUserDisplayName}</p>
+            {/* <ReactSwitch onChange={toggleTheme} checked={theme === 'dark'} /> */}
+            <button onClick={toggleTheme}>TOGGLE</button>
             <div className="my-messages-container">
                 {messageList.map(mes => {
                     if (mes.authorEmail === auth.currentUser.email) {

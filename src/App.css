@@ -355,3 +355,13 @@ button.delete-post {
 #dark {
     min-height: 100vh;
 }
+
+button.change-theme {
+    color: var(--white-for-darkmode);
+    background-color: var(--dark-button);
+    padding: 10px;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}

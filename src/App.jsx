@@ -11,7 +11,7 @@ import {
     HashRouter,
 } from "react-router-dom";
 import { createContext } from 'react';
-
+import ReactSwitch from 'react-switch';
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth"
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
@@ -35,36 +35,47 @@ export const auth = getAuth(app);
 
 export const googleProvider = new GoogleAuthProvider();
 
-export const ThemeContext = createContext(null);
+export const ThemeContext = createContext({});
 
 function App() {
     
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
     
-    auth.onAuthStateChanged(user => user ? setIsLoggedIn(true) : setIsLoggedIn(false))
-    
     React.useEffect(() => {
         document.title = 'nagyb.xyz';
+        auth.onAuthStateChanged(user => user ? setIsLoggedIn(true) : setIsLoggedIn(false));
+        // const unsub = onAuthStateChanged(auth, (user) => {
+        //     if (user) {
+        //         setIsLoggedIn(true);
+        //     } else {
+        //         setIsLoggedIn(false);
+        //     }
+        // })
+        // console.log('auth state changed');
+        // return unsub
     }, []);
     
     const [theme, setTheme] = React.useState('dark');
 
-    function toggleTheme() {
-        setTheme(theme => (theme === 'light') ? 'dark' : 'light');
+    const toggleTheme = () => {
+        const isCurrentDark = theme === 'dark';
+        setTheme(isCurrentDark ? 'light' : 'dark');
     }
 
     return (
-        <ThemeContext.Provider value={{theme, setTheme}}>
-            <div id={theme}>
-                <Router>
+        <div id={theme}>
+            {/* <ReactSwitch onChange={toggleTheme} checked={theme === "dark"} /> */}
+            {/* <button onClick={toggleTheme}>TOGGLE</button> */}
+            <Router>
+                <ThemeContext.Provider value={{theme, toggleTheme, setTheme}}>
                     <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
                     <Routes>
                         <Route path="/" element={isLoggedIn ? <MainMenu /> : <LogIn />} />
                         <Route path="myprofile" element={<MyProfile />} />
                     </Routes>
-                </Router>
-            </div>    
-        </ThemeContext.Provider>
+                </ThemeContext.Provider>
+            </Router>
+        </div>    
     );
 }
 
