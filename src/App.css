@@ -339,7 +339,7 @@ input#comment {
 
 .delete-post-container {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 button.delete-post {

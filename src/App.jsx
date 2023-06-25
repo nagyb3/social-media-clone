@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { createContext } from 'react';
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth"
+import { getAuth, GoogleAuthProvider } from "firebase/auth"
 import { getFirestore } from 'firebase/firestore'
 import MyProfile from './components/MyProfile';
 
@@ -63,7 +63,7 @@ function App() {
     return (
         <div id={theme}>
             <Router>
-                <ThemeContext.Provider value={{theme, toggleTheme, setTheme}}>
+                <ThemeContext.Provider value={{theme, toggleTheme}}>
                     <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
                     <Routes>
                         <Route path="/" element={isLoggedIn ? <MainMenu /> : <LogIn />} />

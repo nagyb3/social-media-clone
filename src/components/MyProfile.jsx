@@ -50,7 +50,7 @@ export default function MyProfile() {
     const [ currentUserEmailState, setCurrentUserEmailState ] = React.useState("");
     const [ currentUserDisplayName, setCurrentUserDisplayName ] = React.useState("");
 
-    const {theme, toggleTheme, setTheme} = React.useContext(ThemeContext);
+    const {theme, toggleTheme} = React.useContext(ThemeContext);
 
     return (
         <div className="my-profile-container">
