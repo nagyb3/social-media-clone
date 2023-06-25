@@ -1,9 +1,9 @@
 import React from "react";
-import dateFormat, { masks } from "dateformat";
+import dateFormat from "dateformat";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { doc, updateDoc, addDoc, collection, getDocs, deleteDoc } from "firebase/firestore"
-import { db, auth, messagesColectionRef } from "../App"
+import { db, auth } from "../App"
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
