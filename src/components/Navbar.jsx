@@ -1,4 +1,3 @@
-// import { buildTimeValue } from "@testing-library/user-event/dist/utils"
 import React from "react"
 import { signOut } from "firebase/auth"
 import { auth } from "../App"
@@ -8,12 +7,9 @@ export default function Navbar(props) {
 
 
     const logout = async () => {
-        // props.setIsLoggedIn(false);
         window.location = window.location.origin;
         await signOut(auth);
     }
-
-    // console.log("auth:", auth.currentUser);
 
     return (
         <div className="nav-container">

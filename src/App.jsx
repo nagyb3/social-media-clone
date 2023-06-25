@@ -12,7 +12,7 @@ import {
 import { createContext } from 'react';
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth"
-import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { getFirestore } from 'firebase/firestore'
 import MyProfile from './components/MyProfile';
 
 const firebaseConfig = {

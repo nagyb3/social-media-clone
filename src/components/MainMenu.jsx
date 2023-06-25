@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import { db } from "../App.jsx"
-import { docs, collection, getDocs, addDoc } from "firebase/firestore"
+import { collection, getDocs, addDoc } from "firebase/firestore"
 import MessageCard from "./MessageCard.jsx";
-import { auth, messagesCollectionRef } from "../App.jsx"
+import { auth } from "../App.jsx"
 
 export default function MainMenu() {
 

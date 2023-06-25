@@ -3,9 +3,7 @@ import { db } from "../App"
 import { collection, getDocs } from "firebase/firestore"
 import { auth } from "../App"
 import MessageCard from "./MessageCard"
-import { getAuth, onAuthStateChanged } from "firebase/auth"
-// import { PropaneSharp } from "@mui/icons-material"
-import ReactSwitch from "react-switch"
+import { onAuthStateChanged } from "firebase/auth"
 import { ThemeContext } from "../App"
 
 
@@ -61,7 +59,6 @@ export default function MyProfile() {
             <p>{currentUserEmailState}</p>
             <p>{currentUserDisplayName}</p>
             <button className="change-theme" onClick={toggleTheme}>SWITCH TO {theme === 'dark' ? 'LIGHT': 'DARK'} MODE</button>
-            {/* <ReactSwitch onChange={toggleTheme} checked={theme === 'dark'} /> */}
             <div className="my-messages-container">
                 {messageList.map(mes => {
                     if (mes.authorEmail === auth.currentUser.email) {
