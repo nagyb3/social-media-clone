@@ -10,7 +10,8 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 export default function MessageCard(props) {
     
     const [currentUserLikedThisMessage, setCurrentUserLikedThisMessage] = React.useState(
-        props.m.usersWhoLikedThis.includes(auth.currentUser.email)
+        auth.currentUser !== null ? 
+        props.m.usersWhoLikedThis.includes(auth.currentUser.email) : false
     );
 
     const [showCommentForm, setShowCommentForm] = React.useState(false);

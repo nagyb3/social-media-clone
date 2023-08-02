@@ -81,6 +81,7 @@ button.log-in-with-google {
     font-weight: 800;
     letter-spacing: 2px;
     box-shadow: 1px 3px 15px rgb(0 0 0 / 0.5);
+    margin: 80px;
 }
 
 button.log-in-with-google:hover {
@@ -94,7 +95,8 @@ button.log-in-with-google:hover {
 }
 
 .log-in-container {
-    height: calc(100vh - 70px);
+    /* height: calc(30vh - 70px); */
+    /* height: calc(200px); */
     /* background-color: #f1ffff; */
     display: flex;
     justify-content: center;

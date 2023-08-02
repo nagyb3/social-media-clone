@@ -4,8 +4,9 @@ import { db } from "../App.jsx"
 import { collection, getDocs, addDoc } from "firebase/firestore"
 import MessageCard from "./MessageCard.jsx";
 import { auth } from "../App.jsx"
+import LogIn from "./LogIn.jsx";
 
-export default function MainMenu() {
+export default function MainMenu(props) {
 
     const [messageList, setMessageList] = useState([]);
     const [newMessage, setNewMessage] = useState("")
@@ -63,11 +64,14 @@ export default function MainMenu() {
 
     return (
         <div className="main-menu-container">
-            {/* <h1>hey you are logged in!</h1> */}
-            <form onSubmit={onSubmitMessage} className="new-post-form">
-              <input value={newMessage} onChange={e => setNewMessage(e.target.value)} className="text-input" type="text" placeholder="whats on your mind?"/>
-              <input type="submit" className="post-button" value="SEND"/>
-            </form>
+            { !props.isLoggedIn ? <LogIn /> : undefined }
+            {
+              props.isLoggedIn ? 
+              <form onSubmit={onSubmitMessage} className="new-post-form">
+                <input value={newMessage} onChange={e => setNewMessage(e.target.value)} className="text-input" type="text" placeholder="whats on your mind?"/>
+                <input type="submit" className="post-button" value="SEND"/>
+              </form> : undefined
+            }
             <div className="all-message-container">
                 {messageList.map((m) => (
                     <MessageCard showDeleteButton={false} getMessageList={getMessageList} key={m.id} m={m}/>

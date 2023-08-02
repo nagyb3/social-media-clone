@@ -66,8 +66,8 @@ function App() {
                 <ThemeContext.Provider value={{theme, toggleTheme}}>
                     <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
                     <Routes>
-                        <Route path="/" element={isLoggedIn ? <MainMenu /> : <LogIn />} />
-                        <Route path="myprofile" element={<MyProfile />} />
+                        <Route path="/" element={<MainMenu isLoggedIn={isLoggedIn} />} />
+                        <Route path="/myprofile" element={<MyProfile />} />
                     </Routes>
                 </ThemeContext.Provider>
             </Router>
