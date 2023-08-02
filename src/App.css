@@ -24,6 +24,7 @@
 
 #dark nav a {
     color: var(--white-for-darkmode);
+    text-decoration: none;
 }
 
 * {
@@ -43,7 +44,7 @@ nav > h1 {
 
 nav {
     background-color: #20b2aa;
-    height: 100px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -93,7 +94,7 @@ button.log-in-with-google:hover {
 }
 
 .log-in-container {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 70px);
     /* background-color: #f1ffff; */
     display: flex;
     justify-content: center;

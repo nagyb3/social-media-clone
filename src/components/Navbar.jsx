@@ -15,7 +15,7 @@ export default function Navbar(props) {
         <div className="nav-container">
             <nav>
                 <h1 className="nav-header">
-                    nagyb.xyz
+                    <a href="/">nagyb.xyz</a>
                 </h1>
                 <ul>
                     {props.isLoggedIn && 
